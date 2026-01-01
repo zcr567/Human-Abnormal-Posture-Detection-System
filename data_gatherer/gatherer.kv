@@ -1,0 +1,128 @@
+<HintLabel@Label>:
+    color: 0, 0, 0, 1
+    size_hint_y: None
+    text_size: self.size
+    height: 50
+    halign: "left"
+
+<UI>
+    orientation: "horizontal"
+    spacing: 5
+    padding: 10
+    canvas:
+        Color:
+            rgba: .8,.8,.8,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 5
+        size_hint_x: 3
+        Label:
+            id: L1
+            color: 0,0,0
+            text: 'image'
+            canvas:
+                Color:
+                    rgba: .5,.5,.5,.5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        BoxLayout:
+            padding: [0,0,0,100]
+            size_hint_y: 9
+            canvas:
+                Color:
+                    rgba: .9,.9,.9,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            CameraHandler:
+                id: video
+                size_hint_y: 3
+    BoxLayout:
+        orientation: "vertical"
+        padding: [30,30,15,50]
+        spacing: 20
+        HintLabel:
+            text: "Camera controls: "
+            bold: True
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 10
+            HintLabel:
+                text: "video"
+            Button:
+                text: "start"
+                on_press: root.ids["video"].start()
+            Button:
+                text: "pause"
+                on_press: root.ids["video"].pause()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 10
+            HintLabel:
+                text: "source"
+            Button:
+                text: "color"
+                on_press: root.ids["video"].set_source(0)
+            Button:
+                text: "depth"
+                on_press: root.ids["video"].set_source(1)
+
+        HintLabel:
+            text: "Tag selection: "
+            bold: True
+        GridLayout:
+            cols: 2
+            padding : 30,30
+            spacing: 20
+            halign:'right'
+            size_hint_y: 0
+            height: 150
+
+            CheckBox:
+                group:'check_0'
+                id:check_0
+                text:'normal'
+                on_active: root.ids["video"].set_current_tag(0)
+            Label:
+                text: 'normal'
+                font_size:20
+                color: 0,0,0
+                valign: 'middle'
+
+            CheckBox:
+                group:'check_0'
+                id:check_1
+                text:'abnormal'
+                on_active: root.ids["video"].set_current_tag(1)
+            Label:
+                text: 'abnormal'
+                font_size:20
+                color: 0,0,0
+                valign: 'middle'
+
+        HintLabel:
+            text: "Date manipulation: : "
+            bold: True
+        Button:
+            text: "capture & add"
+            font_size: "25sp"
+            halign: "center"
+            valign: "center"
+            size_hint_y: None
+            height: 100
+            on_press: root.ids["video"].save_raw_data()
+        Button:
+            text: "del the last"
+            font_size: "25sp"
+            halign: "center"
+            valign: "center"
+            size_hint_y: None
+            height: 100
+            on_press: root.ids["video"].del_last_data()
