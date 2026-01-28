@@ -1,0 +1,4 @@
+data_shape            (720, 1280)
+valid_tags            [0, 1]
+data_amount_magnitude None
+data_amounts          [242, 351]
