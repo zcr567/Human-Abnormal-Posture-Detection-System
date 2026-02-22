@@ -56,7 +56,6 @@ class PointNet(Module):
         self.mlp3 = MLP((1024, 512, 256, 2))
 
     def forward(self, x):
-        # TODO: complete the forward logic
         x @= self.input_t(x)
         x = self.mlp1(x)
         x @= self.feature_t(x)
