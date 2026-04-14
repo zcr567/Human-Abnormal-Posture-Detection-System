@@ -4,10 +4,12 @@ from os import walk
 
 
 def main():
-    directory = "../data_gatherer/depth_data/0"
+    directory = "../data_gatherer/depth_data/1"
     savenum = 1
-    for f in list(walk(directory))[0][2]:
-        path = directory + "/" + f
+    # for f in list(walk(directory))[0][2]:
+    for f in ["00005.npy"]:
+        # path = directory + "/" + f
+        path = f
         while True:
             img = np.load(path)
 
